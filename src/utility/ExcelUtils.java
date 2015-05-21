@@ -3,25 +3,23 @@ package utility;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 
-import org.apache.poi.hssf.usermodel.HSSFRow;
-import org.apache.poi.hssf.usermodel.HSSFSheet;
-import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.xssf.usermodel.XSSFRow;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import config.Constants;
 import executionEngine.DriverScript;
 
 public class ExcelUtils {
-  private static HSSFSheet ExcelWSheet;
-  private static HSSFWorkbook ExcelWBook;
+  private static XSSFSheet ExcelWSheet;
+  private static XSSFWorkbook ExcelWBook;
   private static org.apache.poi.ss.usermodel.Cell Cell;
-  private static HSSFRow Row;
-
-  // private static XSSFRow Row;
+  private static XSSFRow Row;
 
   public static void setExcelFile(String Path) throws Exception {
     try {
       FileInputStream ExcelFile = new FileInputStream(Path);
-      ExcelWBook = new HSSFWorkbook(ExcelFile);
+      ExcelWBook = new XSSFWorkbook(ExcelFile);
     } catch (Exception e) {
       Log.error("Class Utils | Method setExcelFile | Exception desc : " + e.getMessage());
       DriverScript.bResult = false;
@@ -109,7 +107,7 @@ public class ExcelUtils {
       ExcelWBook.write(fileOut);
       // fileOut.flush();
       fileOut.close();
-      ExcelWBook = new HSSFWorkbook(new FileInputStream(Constants.Path_TestData));
+      ExcelWBook = new XSSFWorkbook(new FileInputStream(Constants.Path_TestData));
     } catch (Exception e) {
       DriverScript.bResult = false;
 
